@@ -107,6 +107,12 @@ export class Formik<Values = {}, ExtraProps = {}> extends React.Component<
   }
 
   componentDidUpdate(prevProps: Readonly<FormikConfig<Values> & ExtraProps>) {
+    console.log(
+      'here we are',
+      this.props.enableReinitialize,
+      prevProps.initialValues,
+      this.props.initialValues
+    );
     // If the initialValues change, reset the form
     if (
       this.props.enableReinitialize &&
@@ -630,11 +636,15 @@ function warnAboutMissingIdentifier({
   handlerName: string;
 }) {
   console.error(
-    `Warning: Formik called \`${handlerName}\`, but you forgot to pass an \`id\` or \`name\` attribute to your input:
+    `Warning: Formik called \`${
+      handlerName
+    }\`, but you forgot to pass an \`id\` or \`name\` attribute to your input:
 
     ${htmlContent}
 
-    Formik cannot determine which value to update. For more info see https://github.com/jaredpalmer/formik#${documentationAnchorLink}
+    Formik cannot determine which value to update. For more info see https://github.com/jaredpalmer/formik#${
+      documentationAnchorLink
+    }
   `
   );
 }
